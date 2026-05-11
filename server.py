@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 import fitz  # PyMuPDF
 from PIL import Image
 import pytesseract
-from habanero import CrossRef
+from habanero import Crossref
 from mcp.server.fastmcp import FastMCP
 from dotenv import load_dotenv
 
@@ -61,7 +61,7 @@ SCI_HUB_URLS = [
 def get_crossref_metadata(doi: str) -> dict:
     """Fetches metadata for a DOI from CrossRef."""
     try:
-        cr = CrossRef(mailto=AHARA_EMAIL)
+        cr = Crossref(mailto=AHARA_EMAIL)
         res = cr.works(ids=doi)
         if res and 'message' in res:
             msg = res['message']
@@ -216,7 +216,7 @@ def ahara_search_papers(query: str, limit: int = 5) -> str:
         limit: Max number of results.
     """
     try:
-        cr = CrossRef(mailto=AHARA_EMAIL)
+        cr = Crossref(mailto=AHARA_EMAIL)
         res = cr.works(query=query, limit=limit)
         items = res.get('message', {}).get('items', [])
         
