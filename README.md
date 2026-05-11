@@ -19,8 +19,8 @@ Retrieval-focused and great for a RAG-style tool, it facilitates Retrieval-Augme
 
 ## The Ecosystem: Gefyra & Vashira
 
-Āhara is designed to be a "fetcher" in a broader AI academic ecosystem. 
-Once Āhara downloads a paper (defaulting to the `sci-hub-downloads` folder), it is highly recommended to use it alongside:
+Āhara is a fully **standalone** tool and does not require any other software to function. However, it is designed to be a "fetcher" in a broader AI academic ecosystem. 
+Once Āhara downloads a paper (defaulting to the `sci-hub-downloads` folder), it can be used alongside:
 
 - **[Gefyra](https://github.com/rafgomindo/Gefyra):** A Zotero MCP server. Gefyra can take the files downloaded by Āhara and automatically organize them into your Zotero library, managing references and citations.
 - **[Vashira](https://vashira.org/):** A comprehensive research management system. If you prefer alternatives to Zotero, Vashira can handle your sources and libraries for your thesis and research.
