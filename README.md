@@ -26,7 +26,7 @@ Once Āhara downloads a paper (defaulting to the `sci-hub-downloads` folder), it
 - **[Vashira](https://vashira.org/):** A comprehensive research management system. If you prefer alternatives to Zotero, Vashira can handle your sources and libraries for your thesis and research.
 
 ---
-Site web concept par **"Le Rafael"** 😎 @ [Ram0nes.com](https://ram0nes.com) .
+Concept & Développement par **"Le Rafael"** 😎 @ [Ram0nes.com](https://ram0nes.com) .
 
 ## Prerequisites
 

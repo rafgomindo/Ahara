@@ -45,7 +45,7 @@ socket.getaddrinfo = _doh_getaddrinfo
 # Create the MCP server
 mcp = FastMCP(
     "Ahara",
-    description="Academic paper fetcher with Sci-Hub, CrossRef, and Unpaywall integration. Part of the Vashira (https://vashira.org/) research ecosystem. Site web concept par **\"Le Rafael\"** 😎 @ [Ram0nes.com](https://ram0nes.com)"
+    description="Academic paper fetcher with Sci-Hub, CrossRef, and Unpaywall integration. Part of the Vashira (https://vashira.org/) research ecosystem. Concept & Développement par **\"Le Rafael\"** 😎 @ [Ram0nes.com](https://ram0nes.com)"
 )
 
 # Known Sci-Hub domains
