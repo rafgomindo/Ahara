@@ -23,7 +23,10 @@ Retrieval-focused and great for a RAG-style tool, it facilitates Retrieval-Augme
 Once Āhara downloads a paper (defaulting to the `sci-hub-downloads` folder), it is highly recommended to use it alongside:
 
 - **[Gefyra](https://github.com/rafgomindo/Gefyra):** A Zotero MCP server. Gefyra can take the files downloaded by Āhara and automatically organize them into your Zotero library, managing references and citations.
-- **Vashira:** A research management system. If you prefer alternatives to Zotero, Vashira can handle your sources and libraries for your thesis and research.
+- **[Vashira](https://vashira.org/):** A comprehensive research management system. If you prefer alternatives to Zotero, Vashira can handle your sources and libraries for your thesis and research.
+
+---
+Site web concept par **"Le Rafael"** 😎 @ [Ram0nes.com](https://ram0nes.com) .
 
 ## Prerequisites
 

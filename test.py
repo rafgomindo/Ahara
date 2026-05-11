@@ -43,8 +43,12 @@ def test_crossref(doi):
 def test_unpaywall(doi):
     print(f"\n[Unpaywall] Checking Open Access for {doi}...")
     try:
-        # Use a placeholder email as required by Unpaywall API
-        resp = requests.get(f"https://api.unpaywall.org/v2/{doi}?email=ahara-test@example.com", timeout=10)
+        import os
+        from dotenv import load_dotenv
+        load_dotenv()
+        email = os.getenv("AHARA_EMAIL", "ahara-mcp@example.com")
+        
+        resp = requests.get(f"https://api.unpaywall.org/v2/{doi}?email={email}", timeout=10)
         if resp.status_code == 200:
             data = resp.json()
             is_oa = data.get('is_oa', False)
