@@ -17,7 +17,8 @@ from mcp.server.fastmcp import FastMCP
 from dotenv import load_dotenv
 
 # Load environment variables (e.g., AHARA_EMAIL for CrossRef/Unpaywall)
-load_dotenv()
+env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+load_dotenv(env_path)
 AHARA_EMAIL = os.getenv("AHARA_EMAIL", "ahara-mcp@example.com")
 
 # Disable insecure request warnings since Sci-Hub certs can sometimes be weird
