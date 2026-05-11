@@ -1,0 +1,9 @@
+mcp==1.2.0
+requests==2.31.0
+beautifulsoup4==4.12.3
+PyMuPDF==1.23.26
+urllib3==2.2.1
+pytesseract
+Pillow
+habanero
+python-dotenv
