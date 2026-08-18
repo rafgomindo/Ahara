@@ -46,6 +46,9 @@ _default_mirrors = [
     "https://sci-hub.it/",
     "https://sci-hub.ee/",
     "https://sci-hub.shop/",
+    "https://sci-hub.do/",
+    "https://sci-hub.ren/",
+    "https://sci-hub.tw/",
 ]
 _env_mirrors = os.getenv("AHARA_SCIHUB_MIRRORS")
 SCI_HUB_URLS = (
@@ -164,6 +167,7 @@ def get_unpaywall_pdf_url(doi: str) -> Optional[str]:
 def get_scihub_pdf_url(doi: str) -> str:
     """Attempts to find the direct PDF link on Sci-Hub for a given DOI."""
     errors = []
+    captcha_urls = []
 
     for base_url in SCI_HUB_URLS:
         try:
@@ -179,12 +183,13 @@ def get_scihub_pdf_url(doi: str) -> str:
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, "html.parser")
 
-                # Check for Captcha
+                # Check for Captcha. Don't give up on the first hit — try every
+                # other mirror first, and only prompt the user if all of them
+                # are captcha-walled.
                 if "captcha" in response.text.lower() or soup.find(id="captcha"):
-                    webbrowser.open(search_url)
-                    raise Exception(
-                        f"Captcha detected on {base_url}. The page has been opened in your browser. Please solve the captcha and try the AI request again."
-                    )
+                    captcha_urls.append(search_url)
+                    errors.append(f"{base_url}: Captcha detected")
+                    continue
 
                 # Sci-Hub puts the PDF in an iframe, embed, or specific button
                 pdf_element = soup.find("iframe", id="pdf") or soup.find("embed", id="pdf")
@@ -205,15 +210,22 @@ def get_scihub_pdf_url(doi: str) -> str:
                         elif src.startswith("/"):
                             src = urllib.parse.urljoin(base_url, src)
                         return src
+                else:
+                    errors.append(f"{base_url}: No PDF link found on page")
 
         except requests.exceptions.ConnectionError:
             errors.append(f"{base_url}: Connection Error (ISP DNS Block likely bypassed by DoH but network still failed)")
             continue
         except Exception as e:
-            if "Captcha detected" in str(e):
-                raise
             errors.append(f"{base_url}: {str(e)}")
             continue
+
+    # If we hit captchas on everything, open the first one for the user
+    if captcha_urls:
+        webbrowser.open(captcha_urls[0])
+        raise Exception(
+            f"Captcha detected on all available Sci-Hub mirrors. The page {captcha_urls[0]} has been opened in your browser. Please solve the captcha and try the AI request again."
+        )
 
     error_msg = "\n".join(errors)
     raise Exception(f"Could not find PDF for DOI: {doi} on any Sci-Hub mirror.\nErrors encountered:\n{error_msg}")
