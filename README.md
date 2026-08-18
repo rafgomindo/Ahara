@@ -8,12 +8,14 @@ Retrieval-focused and great for a RAG-style tool, it facilitates Retrieval-Augme
 
 - **Robust Scraping:** Intelligently parses various Sci-Hub mirror HTML structures, locating direct PDF links.
 - **Open Access First:** Integrates with the **Unpaywall API** to prioritize legal, fast, and captcha-free downloads.
-- **Rich Metadata:** Uses the **CrossRef API** to fetch structured paper identities (Title, Authors, Journal, Year).
+- **Rich Metadata:** Uses the **CrossRef API** to fetch structured paper identities (Title, Authors, Journal, Year) via `ahara_get_metadata`, cached per-session.
 - **Search Capability:** Find DOIs and papers using keywords/titles with the `ahara_search_papers` tool.
+- **BibTeX Export:** Generate a citation entry for any DOI with `ahara_export_bibtex`.
 - **DoH (DNS over HTTPS):** Automatically bypasses ISP-level DNS blocking of Sci-Hub domains using Cloudflare's DoH API.
 - **Captcha Handling:** Detects when Sci-Hub serves a captcha, pausing the AI and opening the page in your browser.
-- **Mirror Health Monitor:** A tool to check which Sci-Hub mirrors are currently active.
-- **Bulk Downloading:** Automate the retrieval of multiple papers at once.
+- **Mirror Health Monitor:** A tool to check which Sci-Hub mirrors are currently active, with the mirror list overridable via `AHARA_SCIHUB_MIRRORS`.
+- **Bulk Downloading:** Automate the retrieval of multiple papers at once (with a polite delay between requests).
+- **Automatic Retries:** Transient network failures against CrossRef, Unpaywall, and Sci-Hub are retried with backoff.
 - **Advanced PDF Reading:** Supports paginated reading (`start_page` / `end_page`) to manage token context efficiently.
 - **OCR Fallback:** Uses `pytesseract` to automatically perform OCR on scanned PDFs.
 
@@ -52,6 +54,16 @@ Create a `.env` file in the root directory and add your email to enable CrossRef
 
 ```env
 AHARA_EMAIL=your.email@example.com
+```
+
+Optional settings:
+
+```env
+# Comma-separated list of Sci-Hub mirrors to try, overriding the built-in defaults.
+AHARA_SCIHUB_MIRRORS=https://sci-hub.se/,https://sci-hub.st/
+
+# Logging verbosity (DEBUG, INFO, WARNING, ERROR). Defaults to INFO. Always written to stderr.
+AHARA_LOG_LEVEL=INFO
 ```
 
 ## Running the Server

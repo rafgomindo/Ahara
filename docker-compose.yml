@@ -1,0 +1,10 @@
+services:
+  ahara:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./sci-hub-downloads:/app/sci-hub-downloads
+    restart: unless-stopped

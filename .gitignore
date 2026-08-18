@@ -4,3 +4,7 @@ sci-hub-downloads/
 *.pyc
 .env
 .DS_Store
+dist/
+build/
+*.egg-info/
+.mcp.json

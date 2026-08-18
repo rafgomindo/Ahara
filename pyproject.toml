@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ahara-mcp"
+version = "2.0.0"
+description = "Academic paper fetcher MCP server with Sci-Hub, CrossRef, and Unpaywall integration"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [{ name = "Rafael Paredes Ramones", email = "rafael.paredesramones@gmail.com" }]
+keywords = ["mcp", "model-context-protocol", "academic", "research", "sci-hub", "crossref", "unpaywall"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "mcp==2.0.0",
+    "requests==2.34.2",
+    "beautifulsoup4==4.13.5",
+    "PyMuPDF==1.28.2",
+    "pytesseract",
+    "Pillow",
+    "habanero==2.9.2",
+    "python-dotenv",
+]
+
+[project.urls]
+Homepage = "https://github.com/rafgomindo/Ahara"
+Repository = "https://github.com/rafgomindo/Ahara"
+
+[project.scripts]
+ahara-mcp = "server:main"
+
+[tool.hatch.build.targets.wheel]
+include = ["server.py"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"server.py" = "server.py"
