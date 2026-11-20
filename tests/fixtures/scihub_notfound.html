@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title translate = "fr:title">Sci-Hub : l'article n'est pas disponible via Sci-Hub. Que puis-je faire ?</title>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width=device-width">
+    </head>
+    <body>
+
+        <style>
+
+    @import url('/styles/Atkinson.css');
+    @import url('/styles/Overpass.css');
+
+    html { font-size: 12px }
+
+    @media only screen and (min-width: 1400px) { html { font-size: 13px } }
+    @media only screen and (min-width: 1600px) { html { font-size: 14px } }
+    @media only screen and (min-width: 1800px) { html { font-size: 16px } }
+    @media only screen and (min-width: 2048px) { html { font-size: 18px } }
+
+    @media only screen and (max-height: 600px) { html { font-size: 10px } }
+
+    body {font-family: 'Atkinson Hyperlegible Mono', 'Overpass Mono', monospace; background-color: white; margin: 0; padding: 0 }
+
+    a {text-decoration: none; color: #c9211e}
+
+    fixed-width {margin: 0 auto; padding: 2.33rem; max-width: 2048px; overflow-x: hidden; display: block }
+
+    .vertical,
+    row-split     { display: flex; flex-direction: column; align-items: center }
+    column-split  { display: flex; align-items: flex-start; width: 100% }
+    column-center { flex-grow: 1 }
+
+    mobile-content { display: none }
+    mobile-content.wide column-split > * { margin-left: 2rem }
+    mobile-content.wide .picture { overflow: hidden; max-height: 30rem; }
+
+    block-rounded { border: dotted 2px #ccc; border-radius: 2rem; flex-grow: 1; margin: 0; place-items: center; display: grid; font-size: 1.33rem }
+    block-space   { margin-top: 3rem; display: block }
+
+    header-small  { font-size: 1.66rem; font-weight: bold; margin: 1rem; color: #c9211e}
+
+    block-rounded.info    { display: block; padding: 2.88rem; font-size: 1.22rem }
+    block-rounded.info h1 { font-size: 1.66rem; color: #333;  margin-bottom: 2rem; font-weight: bold; color: #333 }
+
+    block-date       { display: block; padding: 1rem; margin-right: 1.88rem;  max-width: fit-content; max-height: fit-content; text-align: center; color: white; border-radius: 1rem; font-size: 1.66rem; font-weight: bold; }
+
+    block-date.black { background-color: black; }
+    block-date.red   { background-color: #c9211e; }
+    block-date.white { border: dotted 2px #c9211e; background-color: white; color: #c9211e }
+    block-date.gray  { border: none; border-radius: 0; border-bottom:  dotted 2px #333; background-color: white; color: #333; font-weight: normal; }
+
+    block-date .number { font-size: 2rem }
+
+    span.rotate { animation: spin 3s linear infinite; display: inline-block; font-size: 1.88rem; }
+    @keyframes spin { from { transform: rotate(0deg) }  to { transform: rotate(360deg) } }
+
+    .yes { display: inline-block }
+    .no  { display: none }
+
+    @media only screen and (max-width: 1024px)
+    {
+        fixed-width { padding: 1.88rem }
+
+        column-split   { justify-content: space-around; align-items: center }
+        mobile-content { display: block; margin: 3rem 3rem 0 0 }
+    }
+
+    @media only screen and (max-width: 640px)
+    {
+        fixed-width { padding: 0.88rem }
+
+        mobile-content.wide { display: none }
+        mobile-content { margin-right: 0; }
+
+        block-rounded { margin: 0 1rem;  }
+    }
+
+    @media only screen and (max-width: 480px)
+    {
+        fixed-width { padding: 0 }
+    }
+
+</style>
+
+<script>
+
+    function local(id) { return document.querySelector(".messages ." + id).innerText  }
+
+</script>
+
+        <style type = "text/css">
+
+            body { background-color: #eee; }
+
+            fixed-width { width: fit-content; padding: 6rem; max-width: 800px; background-color: white; border-radius: 2rem; border: dashed 4.8rem #eee }
+            
+            .from img { border: dotted 2px #aaa; border-radius: 50%; width: 8rem }
+
+            .paper { margin: 3rem auto; width: fit-content; justify-items: left; padding: 2rem; border: dashed 2px #bbb; font-size: 1.22rem; background-color: #fafafa; }
+            .paper .title { font-size: 1.55rem; margin: 1rem 0 }
+            .paper .doi   { margin-top: 2rem }
+            .paper a { color: #777 }
+            .paper a .arrow { display: none }
+            .paper a:hover { margin-left: 0.88rem; }
+            .paper a:hover .arrow { display: inline-block }
+
+            .message { margin-left: 3rem; font-size: 1.22rem; padding: 1rem; border: 0 }
+
+            .info    { font-size: 1.22rem; border: 0; padding: 1rem 0 1rem 1rem; text-align: left; }
+            .info p  { margin:0; padding: 0 }
+            .info a  { display: inline-block; padding: 0.1rem 0.8rem; border-radius: 0.8rem;  background-color: #c9211e; color: white; font-weight: bold }
+            .info a:hover { background-color: white; border: dashed 1px #c9211e; color: #c9211e  }
+            .info b  { color: #c9211e; }
+
+            .header { color: #c9211e; font-size: 3rem; font-weight: bold; margin-top: 2rem }
+
+            .openaccess { background: white; padding: 2rem; margin: 2rem 1rem 4rem 4rem; border: dashed 1px #aaa }
+            .openaccess a { background: none; color: #c9211e; padding: 0;; }
+            .openaccess a:hover { background-color: green; color: white; border-color: green; padding: 0.1rem 0.8rem; }
+
+            .similar { margin: 8rem 2rem 8rem 6rem; display: block }
+
+            .similar .header { font-size: 3.8rem; color: #c9211e; font-weight: bold; display: grid; align-items: center; text-align: center; }
+            .similar .explanation { font-size: 1.22rem; background-color: white; border-radius: 2rem; border: dashed 2.8rem #eee; padding: 3rem 0; margin-left: 4%; text-align: center; }
+
+            .similar .columns { display: flex; flex-wrap: wrap; justify-content: center; }
+            .similar .columns div { width: 41%; max-width: 1024px; min-width: 680px; }
+
+            .similar .list {display: flex; flex-wrap: wrap; max-width: 100vw; justify-content: center;}
+
+            .similar .article {display: block; margin: 4rem 4% 0 0; width: 41%; max-width: 1024px; min-width: 640px; height: fit-content; padding: 1.23rem; border: solid 2px #eee; border-radius: 1rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; color: black; text-decoration: none; background-color: white; }
+            .similar .article .time,
+            .similar .article .geo   {color: #888; font-weight: bold; font-size: 1.23rem; width: fit-content}
+            .similar .article .title {font-size: 1.66rem; margin: 1rem 0 1rem 0}
+            .similar .article .journal {font-size: 1.33rem;}
+            .similar .article .year {font-size: 1.33rem;}
+            .similar .article .abstract {margin-top: 1.23rem; font-size: 1.22rem; text-align: justify;}
+            .similar .article:hover {border: dashed 2px #888}
+
+            @media only screen and (max-width: 1800px)
+            {
+                fixed-width { max-width: 640px; }
+            }
+
+            @media only screen and (max-width: 1600px)
+            {
+                .similar .header { margin-bottom: 3rem; }
+            }
+
+        </style>
+
+        <fixed-width>
+
+            <column-split>
+                <div class = "from"><a href = "/"><img src = "/pictures/ravenround.gif"></a></div>
+                <block-rounded class = "message" translate = "fr:message">Hélas, l'article suivant n'est pas encore disponible dans ma base de données :</block-rounded>
+            </column-split>
+
+            <block-rounded class = "paper">
+
+                <div class = "title">Sensory neurons drive immune exclusion by stimulating a dense extracellular matrix in the breast cancer tumor microenvironment</div>
+
+                <div>Cell, 2026</div>
+
+                <div class = "abstract">Innervation is critical in tumor progression. However, the involvement of sensory neurons in the ecosystem of triple-negative breast cancer (TNBC) remains poorly elucidated. Here, we decipher that sensory neurons, the dominant neuron type in the TNBC ecosystem, drive the immune-excluded tumor microenvironment (TME) by stimulating a dense extracellular matrix. Mechanistically, a high concentration of nerve growth factor (NGF) in TME triggers sensory neurons to secrete the neuropeptide calcitonin...</div>
+
+                <div class = "doi"><a target = "_blank" href = "//doi.org/10.1016/j.cell.2026.01.001">10.1016/j.cell.2026.01.001 <span class = "arrow">&rarr;</span></a></div>
+
+            </block-rounded>
+
+            <block-rounded class = "info"  translate = "fr:recent">L'article est récent : publié après 2021. Les articles récents sont pour la plupart indisponibles car le téléchargement automatique ne fonctionne pas.</block-rounded>
+
+            <block-rounded class = "info openaccess" >
+                <p><span  translate = "fr:openaccess">O ! Selon l'index OpenAlex, l'article est en libre accès et devrait être accessible gratuitement sur le site de l'éditeur. Vous pouvez essayer de le télécharger</span> <a target = "blank" href = "https://doi.org/10.1016/j.cell.2026.01.001" translate = "fr:here">ici</a>. <span translate = "fr:warning">Mais il n'y a aucune garantie, car cet index contient souvent des erreurs.</span></p>
+            </block-rounded>
+
+            <div class = "header" translate = "fr:question">Que puis-je faire ?</div>
+
+            <block-rounded class = "info">
+
+                <p translate = "fr:todo">Vous pouvez demander cet article via la <a target = "blank" href = "//sci-net.xyz/">plateforme Sci-Net</a>. La plupart des articles, sauf quelques cas rares, sont mis en ligne sur demande en quelques minutes.</p>
+                
+                <p style = "margin-top: 2rem" translate = "fr:goal">...une fois la demande résolue, l'article sera disponible sur Sci-Hub <b>gratuitement pour tous</b>. Ainsi, en utilisant la plateforme, vous aidez Sci-Hub à se développer et à augmenter le nombre d'articles de recherche disponibles en libre accès.</p>
+
+            </block-rounded>
+
+        </fixed-width>
+    
+        <div class = "similar" >
+
+            <div class = "columns">
+                <div class = "header" translate = "fr:similar">articles<br>similaires</div>
+
+                <div class = "explanation" translate = "fr:alternatives">Il existe un certain nombre d'articles similaires présents dans la base de données de Sci-Hub. Ils pourraient vous intéresser</div>
+            </div>
+
+            <div class = "list">
+                <a class = "article" target = "blank" href = "/10.1007/s10555-023-10095-1">
+    <div class = "title">The tumor-nerve circuit in breast cancer</div>
+    <div><span class = "journal">Cancer and Metastasis Reviews</span>, <span class = "year">2023</span></div>
+    <div class = "abstract"><jats:title>Abstract</jats:title><jats:p>It is well established that innervation is one of the updated hallmarks of cancer and that psychological stress promotes the initiation and progression of cancer. The breast tumor environment includes not only fibroblasts, adipocytes, endothelial cells, and lymphocytes but also neurons, which is increasingly discovered important in breast cancer progression. Peripheral nerves, especially sympathetic, parasympathetic, and sensory nerves, have been reported to play...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1016/j.bbcan.2025.189464">
+    <div class = "title">Sensory neuro-tumor crosstalk: Therapeutic opportunities and emerging frontiers in cancer neuroscience</div>
+    <div><span class = "journal">Biochimica et Biophysica Acta (BBA) - Reviews on Cancer</span>, <span class = "year">2025</span></div>
+    <div class = "abstract">Emerging evidence in cancer neuroscience highlights the crucial role of sensory nerves in tumor progression, an aspect of cancer pathobiology previously overlooked. Mechanistically, tumor-associated sensory neurons establish a self-reinforcing oncogenic loop via secreted neurotrophic factors (e.g., NGF/BDNF), which directly promote cancer cell growth, spread, and treatment resistance through Trk activation. Concurrently, tumors rewire their local environment through dysregulated expression of axon guidance...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1016/j.molonc.2015.05.001">
+    <div class = "title">Nerve fibers infiltrate the tumor microenvironment and are associated with nerve growth factor production and lymph node invasion in breast cancer</div>
+    <div><span class = "journal">Molecular Oncology</span>, <span class = "year">2015</span></div>
+    <div class = "abstract">Infiltration of the tumor microenvironment by nerve fibers is an understudied aspect of breast carcinogenesis. In this study, the presence of nerve fibers was investigated in a cohort of 369 primary breast cancers (ductal carcinomas in situ, invasive ductal and lobular carcinomas) by immunohistochemistry for the neuronal marker PGP9.5. Isolated nerve fibers (axons) were detected in 28% of invasive ductal carcinomas as compared to only 12% of invasive lobular carcinomas and 8% of ductal carcinomas in situ...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1007/s13402-025-01151-9">
+    <div class = "title">Neural-tumor crosstalk and molecular targeting: mechanisms and therapeutic implications in cancer neuroscience</div>
+    <div><span class = "journal">Cellular Oncology</span>, <span class = "year">2026</span></div>
+    <div class = "abstract">The nervous system is increasingly recognized as a key regulator of the tumor microenvironment, engaging in bidirectional crosstalk with cancer cells through neurotransmitters, neuropeptides, and synaptic-like connections. Autonomic nerves modulate tumor progression: sympathetic signaling promotes growth, metastasis, and immune evasion via β-adrenergic receptor activation, while parasympathetic input exerts dual roles—driving gastric cancer yet protecting against colitis-associated colorectal cancer...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1016/j.phrs.2026.108113">
+    <div class = "title">Pain signaling via sensory neurons drives breast cancer progression through neuropeptide release and κ-opioid counter-regulation</div>
+    <div><span class = "journal">Pharmacological Research</span>, <span class = "year">2026</span></div>
+    <div class = "abstract">Severe pain in patients with breast cancer is associated with poorer survival outcomes, yet the mechanisms linking nociceptive signaling to tumor progression remain unclear. In a clinical cohort, breast cancer patients whose moderate or severe pain improved under specialized palliative care exhibited significantly longer survival than those with persistent pain. Serum levels of calcitonin gene-related peptide (CGRP) and substance P (SP), neuropeptides that can be released from sensory neurons, were...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1038/s41523-022-00485-z">
+    <div class = "title">Sensory nerves enhance triple-negative breast cancer invasion and metastasis via the axon guidance molecule PlexinB3</div>
+    <div><span class = "journal">npj Breast Cancer</span>, <span class = "year">2022</span></div>
+    <div class = "abstract"><jats:title>Abstract</jats:title><jats:p>In breast cancer, nerve presence has been correlated with more invasive disease and worse prognosis, yet the mechanisms by which different types of peripheral nerves drive tumor progression remain poorly understood. In this study, we identified sensory nerves as more abundant in human triple-negative breast cancer (TNBC) tumors. Co-injection of sensory neurons isolated from the dorsal root ganglia (DRG) of adult female mice with human TNBC cells in immunocompromised...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1097/md.0000000000000172">
+    <div class = "title">Nerve Fibers in Breast Cancer Tissues Indicate Aggressive Tumor Progression</div>
+    <div><span class = "journal">Medicine</span>, <span class = "year">2014</span></div>
+    <div class = "abstract">Emerging evidence has indicated nerve fibers as a marker in the progression of various types of cancers, such as pancreatic cancer and prostate cancer. However, whether nerve fibers are associated with breast cancer progression remains unclear. In this study, we evaluated the presence of nerve fibers in 352 breast cancer specimens and 83 benign breast tissue specimens including 43 cases of cystic fibrosis and 40 cases of fibroadenoma from 2 independent breast tumor center using immunohistochemical staining...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1126/sciadv.abj5435">
+    <div class = "title">Targeting neurons in the tumor microenvironment with bupivacaine nanoparticles reduces breast cancer progression and metastases</div>
+    <div><span class = "journal">Science Advances</span>, <span class = "year">2021</span></div>
+    <div class = "abstract"><jats:p>Targeting neurons in breast cancer with anesthetic nanoparticles inhibits nerve-cancer stimulation and tumor progression.</jats:p></div>
+</a>
+<a class = "article" target = "blank" href = "/10.1016/j.tranon.2025.102647">
+    <div class = "title">Exploration of precise classification and therapeutic targets of breast cancer based on genes related to neuro-cancer crosstalk</div>
+    <div><span class = "journal">Translational Oncology</span>, <span class = "year">2026</span></div>
+    <div class = "abstract">This investigation examines neural-cancer crosstalk in breast cancer, utilizing TCGA/GEO transcriptomic and single-cell data to develop a neural-cancer crosstalk prognostic signature and evaluate its clinical relevance. We identified four core genes-L1CAM, TACR1, GFRA1, and NTRK3-using univariate Cox regression and LASSO-Cox regression to develop a risk scoring model. The prognostic signature showed consistent predictive accuracy across validation cohorts, with high-risk patients demonstrating markedly...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1016/j.jpain.2010.12.016">
+    <div class = "title">Breast Cancer-Induced Bone Remodeling, Skeletal Pain, and Sprouting of Sensory Nerve Fibers</div>
+    <div><span class = "journal">The Journal of Pain</span>, <span class = "year">2011</span></div>
+    <div class = "abstract"><h2>Abstract</h2> Breast cancer metastasis to bone is frequently accompanied by pain. What remains unclear is why this pain tends to become more severe and difficult to control with disease progression. Here we test the hypothesis that with disease progression, sensory nerve fibers that innervate the breast cancer bearing bone undergo a pathological sprouting and reorganization, which in other nonmalignant pathologies has been shown to generate and maintain chronic pain. Injection of human breast cancer...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1186/s12935-018-0707-8">
+    <div class = "title">Neuropeptide-induced modulation of carcinogenesis in a metastatic breast cancer cell line (MDA-MB-231LUC+)</div>
+    <div><span class = "journal">Cancer Cell International</span>, <span class = "year">2018</span></div>
+    <div class = "abstract">Metastatic cancer to bone is well-known to produce extreme pain. It has been suggested that the magnitude of this perceived pain is associated with disease progression and poor prognosis. These data suggest a potential cross-talk between cancer cells and nociceptors that contribute not only to pain, but also to cancer aggressiveness although the underlying mechanisms are yet to be stablished.The in vitro dose dependent effect of neuropeptides (NPs) (substance P &#x5B;SP&#x5D;, calcitonin gene-related peptide and...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1007/s12672-025-02827-2">
+    <div class = "title">Tumor-infiltrating nerves: unraveling the role of cancer neuroscience in tumorigenesis, disease progression, and emerging therapies</div>
+    <div><span class = "journal">Discover Oncology</span>, <span class = "year">2025</span></div>
+    <div class = "abstract">Cancer neuroscience has evolved as a novel discipline that elucidates the intricate relationships between the neurological system and neoplasms. Research indicates that the ablation of particular nerve types, including parasympathetic, sympathetic, or sensory nerves, can suppress tumour growth in a tissue-specific manner. Moreover, numerous tumours exhibit greater innervation density than their normal tissue equivalents, prompting essential enquiries on the processes of tumour innervation and its molecular...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1159/000505437">
+    <div class = "title">Complexity of Neural Component of Tumor Microenvironment in Prostate Cancer</div>
+    <div><span class = "journal">Pathobiology</span>, <span class = "year">2020</span></div>
+    <div class = "abstract">The tumor microenvironment (TME) plays an essential role in the development and progression of neoplasms. TME consists of the extracellular matrix and numerous specialized cells interacting with cancer cells by paracrine and autocrine mechanisms. Tumor axonogenesis and neoneurogenesis constitute a developing area of investigation. Prostate cancer (PC) is one of the most common malignancies in men worldwide. During the past years, more and more studies have shown that mechanisms leading to the development...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1016/j.bbcan.2011.04.005">
+    <div class = "title">The neuronal influence on tumor progression</div>
+    <div><span class = "journal">Biochimica et Biophysica Acta (BBA) - Reviews on Cancer</span>, <span class = "year">2011</span></div>
+    <div class = "abstract">Nerve fibers accompany blood and lymphatic vessels all over the body. An extensive amount of knowledge has been obtained with regard to tumor angiogenesis and tumor lymphangiogenesis, yet little is known about the potential biological effects of “neoneurogenesis”. Cancer cells can exploit the advantage of the factors released by the nerve fibers to generate a positive microenvironment for cell survival and proliferation. At the same time, they can stimulate the formation of neurites by secreting...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1038/onc.2012.417">
+    <div class = "title">Neurotrophin-3 modulates breast cancer cells and the microenvironment to promote the growth of breast cancer brain metastasis</div>
+    <div><span class = "journal">Oncogene</span>, <span class = "year">2012</span></div>
+    <div class = "abstract">Metastasis, which remains incompletely characterized at the molecular and biochemical levels, is a highly specific process. Despite the ability of disseminated cancer cells to intravasate into distant tissues, it has been long recognized that only a limited subset of target organs develop clinically overt metastases. Therefore, subsequent adaptation of disseminated cancer cells to foreign tissue microenvironment determines the metastatic latency and tissue tropism of these cells. As a result, studying...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1096/fj.201802004r">
+    <div class = "title">Neuronal calcium sensor 1 (NCS1) promotes motility and metastatic spread of breast cancer cells
+                    <i>in vitro</i>
+                    and
+                    <i>in vivo</i></div>
+    <div><span class = "journal">The FASEB Journal</span>, <span class = "year">2018</span></div>
+    <div class = "abstract">Increased levels of the calcium-binding protein neuronal calcium sensor 1 (NCS1) predict an unfavorable patient outcome in several aggressive cancers, including breast and liver tumors. Previous studies suggest that NCS1 overexpression facilitates metastatic spread of these cancers. To investigate this hypothesis, we explored the effects of NCS1 overexpression on cell proliferation, survival, and migration patterns in vitro in 2- and 3-dimensional (2/3-D). Furthermore, we translated our results into an in...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1038/s41420-021-00450-y">
+    <div class = "title">Role of the nervous system in cancers: a review</div>
+    <div><span class = "journal">Cell Death Discovery</span>, <span class = "year">2021</span></div>
+    <div class = "abstract">Nerves are important pathological elements of the microenvironment of tumors, including those in pancreatic, colon and rectal, prostate, head and neck, and breast cancers. Recent studies have associated perineural invasion with tumor progression and poor outcomes. In turn, tumors drive the reprogramming of neurons to recruit new nerve fibers. Therefore, the crosstalk between nerves and tumors is the hot topic and trend in current cancer investigations. Herein, we reviewed recent studies presenting direct...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1016/j.bbi.2015.02.024">
+    <div class = "title">Activation of neuroimmune pathways increases therapeutic effects of radiotherapy on poorly differentiated breast carcinoma</div>
+    <div><span class = "journal">Brain, Behavior, and Immunity</span>, <span class = "year">2015</span></div>
+    <div class = "abstract">Recent studies document the importance of neuronal dysfunction in cancer development and metastasis. We reported previously that both depletion of neuropeptides in capsaicin-sensitive sensory nerve endings and vagotomy increases metastasis of triple negative breast carcinoma. Of the sensory neuropeptides, Substance P (SP) is distributed widely for regulation of immune functions. We therefore examined the affects of continuous exposure to low doses of SP on brain metastatic cells of the mouse breast...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1007/s12672-026-04659-0">
+    <div class = "title">Nervous and immune system crosstalk shapes cancer progression and treatment response</div>
+    <div><span class = "journal">Discover Oncology</span>, <span class = "year">2026</span></div>
+    <div class = "abstract">The nervous and immune systems, though traditionally studied as separate entities, are now recognized as deeply interconnected networks that jointly regulate tumor initiation, progression, and therapeutic response. Neural elements extend into the tumor microenvironment where they interact with immune cells, shaping processes such as proliferation, invasion, and metastasis. Through neurotransmitters, neuropeptides, and bidirectional signaling with the brain, nerves influence leukocyte recruitment,...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1038/s41419-025-07464-9">
+    <div class = "title">Tumor cell-derived EMP1 is essential for cancer-associated fibroblast infiltration in tumor microenvironment of triple-negative breast cancer</div>
+    <div><span class = "journal">Cell Death &amp; Disease</span>, <span class = "year">2025</span></div>
+    <div class = "abstract"><jats:title>Abstract</jats:title>
+          <jats:p>The role of epithelial membrane protein 1 (EMP1) in tumor microenvironment (TME) remodeling has not yet been elucidated. In addition, the biological function of EMP1 in triple-negative breast cancer (TNBC) is largely unclear. In this study, we examined the infiltration landscape of cell types in the TME of breast cancer, and found that EMP1 expression was positively correlated with stromal and microenvironmental scores. Infiltration analysis and...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1016/j.cell.2026.03.018">
+    <div class = "title">Cancer neuroscience: The past, the present, and the road ahead</div>
+    <div><span class = "journal">Cell</span>, <span class = "year">2026</span></div>
+    <div class = "abstract">Both the nervous system and cancer-intrinsic neural features can govern cancer initiation, growth, progression, metastasis, and treatment resistance, while cancer can likewise influence the nervous system, promoting neural reprogramming and neuropsychiatric symptoms that worsen patient outcomes. The field of cancer neuroscience seeks to unravel this complex neuro-cancer crosstalk and holds the promise to develop neuroscience-instructed cancer therapies that improve disease control and quality of life....</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1081/cnv-100106144">
+    <div class = "title">Nerve Growth Factor Receptor Immunoreactivity in Breast Cancer Patients</div>
+    <div><span class = "journal">Cancer Investigation</span>, <span class = "year">2001</span></div>
+    <div class = "abstract">Nerve growth factor receptor (NGF-R) has been shown to have antiproliferative, differentiative, or apoptotic effects on some types of tumor cells, whereas in others it may have mitogenic activity. The immunohistochemical distribution of NGF-R was analyzed in a series of tissue samples from breast cancer patients and its relationship with other clinical and pathological parameters was studied. The distribution of NGF-R was evaluated by immunohistochemistry in frozen tissue samples of 46 breast cancer...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.3390/cells10020454">
+    <div class = "title">Neuroimmune Regulation of Surgery-Associated Metastases</div>
+    <div><span class = "journal">Cells</span>, <span class = "year">2021</span></div>
+    <div class = "abstract">Surgery remains an essential therapeutic approach for most solid malignancies. Although for more than a century accumulating clinical and experimental data have indicated that surgical procedures themselves may promote the appearance and progression of recurrent and metastatic lesions, only in recent years has renewed interest been taken in the mechanism by which metastasizing of cancer occurs following operative procedures. It is well proven now that surgery constitutes a risk factor for the promotion of...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1038/s41598-024-70386-7">
+    <div class = "title">Proteomic insights into breast cancer response to brain cell-secreted factors</div>
+    <div><span class = "journal">Scientific Reports</span>, <span class = "year">2024</span></div>
+    <div class = "abstract">The most devastating feature of cancer cells is their ability to metastasize to distant sites in the body. HER2 + and TN breast cancers frequently metastasize to the brain and stay potentially dormant for years until favorable conditions support their proliferation. The sheltered and delicate nature of the brain prevents, however, early disease detection and effective delivery of therapeutic drugs. Moreover, the challenges associated with the acquisition of brain biopsies add compounding difficulties to...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1111/imcb.12496">
+    <div class = "title">Neuroimmunology of cancer and associated symptomology</div>
+    <div><span class = "journal">Immunology &amp; Cell Biology</span>, <span class = "year">2021</span></div>
+    <div class = "abstract">Evolutionarily, the nervous system and immune cells have evolved to communicate with each other to control inflammation and host responses against injury. Recent findings in neuroimmune communication demonstrate that these mechanisms extend to cancer initiation and progression. Lymphoid structures and tumors, which are often associated with inflammatory infiltrate, are highly innervated by multiple nerve types (e.g. sympathetic, parasympathetic, sensory). Recent preclinical and clinical studies demonstrate...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1016/j.canlet.2025.217907">
+    <div class = "title">NF-κB-mediated cytokine secretion and glutamate metabolic reprogramming converge in breast cancer brain tropism</div>
+    <div><span class = "journal">Cancer Letters</span>, <span class = "year">2025</span></div>
+    <div class = "abstract">Brain metastases are an increasingly common and life-threatening complication of breast cancer. Here, we report that breast cancer cells with a propensity for cerebral colonization (BrM cells) display a distinct imbalance in the NF-κB pathway characterized by elevated IKKβ and reduced IKKα levels. This imbalance reduces the levels of the downstream NF-κB modulators IκBα and TAX1BP1, fostering a chronically active pro-inflammatory program. Such BrM cells secrete high concentrations of IL-8 and GRO...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1038/s41598-024-77941-2">
+    <div class = "title">RNA methylation patterns of tumor microenvironment cells regulate prognosis and immunotherapeutic responsiveness in patients with triple-negative breast cancer</div>
+    <div><span class = "journal">Scientific Reports</span>, <span class = "year">2024</span></div>
+    <div class = "abstract">Immunotherapy research focuses on reshaping the tumor microenvironment (TME) to enhance its antitumor immune responses, with an emphasis on understanding the impact of RNA methylation in triple-negative breast cancer (TNBC) TME regulation. This study explored the influence of various RNA methyltransferases on TME cells in TNBC and their correlation with prognosis and immunotherapy response. Using non-negative matrix factorization on single-cell RNA-sequencing data, distinct TME cell clusters were...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1146/annurev-cancerbio-030419-033349">
+    <div class = "title">The Neural Regulation of Cancer</div>
+    <div><span class = "journal">Annual Review of Cancer Biology</span>, <span class = "year">2020</span></div>
+    <div class = "abstract">The nervous system is intimately involved in physiological processes from development and growth to tissue homeostasis and repair throughout the body. It logically follows that the nervous system has the potential to play analogous roles in the context of cancer. Progress toward understanding the crucial role of the nervous system in cancer has accelerated in recent years, but much remains to be learned. Here, we highlight rapidly evolving concepts in this burgeoning research space and consider next steps...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1002/med4.27">
+    <div class = "title">Crosstalk between cancer cells and the nervous system</div>
+    <div><span class = "journal">Medicine Advances</span>, <span class = "year">2023</span></div>
+    <div class = "abstract"><jats:title>Abstract</jats:title><jats:p>Crosstalk between tumors and the nervous system has emerged as a significant hallmark of human cancer. In the central nervous system, neurons closely interact with tumor cells, promoting the proliferation of glioma and neuroblastoma. Additionally, the peripheral nervous system plays a crucial role in reshaping the tumor microenvironment, modulating angiogenesis, and regulating immune cell function, while also directly promoting tumorigenesis and metastasis. Current...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.3390/cancers12123741">
+    <div class = "title">Interrupting Neuron—Tumor Interactions to Overcome Treatment Resistance</div>
+    <div><span class = "journal">Cancers</span>, <span class = "year">2020</span></div>
+    <div class = "abstract">Neurons in the tumor microenvironment release neurotransmitters, neuroligins, chemokines, soluble growth factors, and membrane-bound growth factors that solid tumors leverage to drive their own survival and spread. Tumors express nerve-specific growth factors and microRNAs that support local neurons and guide neuronal growth into tumors. The development of feed-forward relationships between tumors and neurons allows tumors to use the perineural space as a sanctuary from therapy. Tumor denervation slows...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.1016/j.phrs.2014.12.006">
+    <div class = "title">Enhancement of vascular endothelial growth factor release in long-term drug-treated breast cancer via transient receptor potential channel 5-Ca2+-hypoxia-inducible factor 1α pathway</div>
+    <div><span class = "journal">Pharmacological Research</span>, <span class = "year">2015</span></div>
+    <div class = "abstract">Chemotherapy targeting anti-angiogenesis in tumors may have insufficient efficacy, but little is known about the underlying mechanisms. Here, we showed that the Ca2+-permeable channel, TrpC5, is highly expressed in human breast cancer after long-term chemotherapy drug-treatment. It mediates downstream hypoxia-inducible factor 1α accumulation in the nucleus, and then activates the transcription of vascular endothelial growth factor which promotes tumor angiogenesis, leading to a poor chemotherapeutic...</div>
+</a>
+<a class = "article" target = "blank" href = "/10.3390/cancers11081205">
+    <div class = "title">The Complex Interaction between the Tumor Micro-Environment and Immune Checkpoints in Breast Cancer</div>
+    <div><span class = "journal">Cancers</span>, <span class = "year">2019</span></div>
+    <div class = "abstract">The progression of breast cancer and its association with clinical outcome and treatment remain largely unexplored. Accumulating data has highlighted the interaction between cells of the immune system and the tumor microenvironment in cancer progression, and although studies have identified multiple facets of cancer progression within the development of the tumor microenvironment (TME) and its constituents, there is lack of research into the associations between breast cancer subtype and staging. Current...</div>
+</a>
+
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -3,6 +3,8 @@ services:
     build: .
     ports:
       - "8000:8000"
+      # Robot-check page: only reachable from this machine.
+      - "127.0.0.1:8765:8765"
     env_file:
       - .env
     volumes:

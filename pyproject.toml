@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ahara-mcp"
-version = "2.0.0"
-description = "Academic paper fetcher MCP server with Sci-Hub, CrossRef, and Unpaywall integration"
+version = "2.1.0"
+description = "Academic paper fetcher MCP server: open access (Unpaywall, OpenAlex, arXiv, Europe PMC), Sci-Net and Sci-Hub"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
 authors = [{ name = "Rafael Paredes Ramones", email = "rafael.paredesramones@gmail.com" }]
-keywords = ["mcp", "model-context-protocol", "academic", "research", "sci-hub", "crossref", "unpaywall"]
+keywords = ["mcp", "model-context-protocol", "academic", "research", "sci-hub", "sci-net", "crossref", "unpaywall", "openalex"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -27,6 +27,9 @@ dependencies = [
     "python-dotenv",
 ]
 
+[project.optional-dependencies]
+dev = ["pytest"]
+
 [project.urls]
 Homepage = "https://github.com/rafgomindo/Ahara"
 Repository = "https://github.com/rafgomindo/Ahara"
@@ -39,3 +42,7 @@ include = ["server.py"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "server.py" = "server.py"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
