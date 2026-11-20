@@ -70,7 +70,13 @@ Concept & Développement par **"Le Rafael"** 😎 @ [Ram0nes.com](https://ram0ne
 
 ## Installation
 
-Clone the repository and install the Python dependencies:
+The quickest way is to install it with pip, which gives you an `ahara-mcp` command:
+
+```bash
+pip install git+https://github.com/rafgomindo/Ahara.git
+```
+
+Or clone the repository and install the Python dependencies:
 
 ```bash
 git clone https://github.com/rafgomindo/Ahara.git
@@ -80,7 +86,7 @@ pip install -r requirements.txt
 
 ## Configuration
 
-Create a `.env` file in the root directory and add your email to enable CrossRef and Unpaywall features:
+Create a `.env` file in the root directory and add your email to enable CrossRef and Unpaywall features. If you installed Āhara with pip, put it in `~/.ahara/.env` instead.
 
 ```env
 AHARA_EMAIL=your.email@example.com
@@ -108,6 +114,9 @@ AHARA_ROBOT_WAIT=90
 # Where the robot-check page listens. Port 0 picks a free port.
 AHARA_RELAY_HOST=127.0.0.1
 AHARA_RELAY_PORT=0
+
+# Where papers are saved. Default: sci-hub-downloads/ in the repo, or ~/sci-hub-downloads for pip installs.
+AHARA_OUTPUT_DIR=~/sci-hub-downloads
 
 # Where Āhara remembers working Sci-Hub domains. Default: ~/.ahara
 AHARA_STATE_DIR=~/.ahara
@@ -139,7 +148,7 @@ To run it over HTTP instead, set `AHARA_TRANSPORT=streamable-http` (or `sse`), p
 claude mcp add --scope user ahara -- /path/to/Ahara/venv/bin/python /path/to/Ahara/server.py
 ```
 
-On Windows, the Python path is `C:\path\to\Ahara\venv\Scripts\python.exe`. Check it with `claude mcp get ahara`, which should report `Connected`. New Claude Code sessions then have the `ahara_*` tools; `/mcp` shows their status.
+On Windows, the Python path is `C:\path\to\Ahara\venv\Scripts\python.exe`. If you installed with pip, it's simply `claude mcp add --scope user ahara -- ahara-mcp`. Check it with `claude mcp get ahara`, which should report `Connected`. New Claude Code sessions then have the `ahara_*` tools; `/mcp` shows their status.
 
 If `claude` isn't on your PATH because you only use an IDE extension, the extension ships the same program in its `resources/native-binary` folder.
 

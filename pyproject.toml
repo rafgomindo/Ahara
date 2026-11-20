@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ahara-mcp"
-version = "2.1.0"
+version = "2.1.1"
 description = "Academic paper fetcher MCP server: open access (Unpaywall, OpenAlex, arXiv, Europe PMC), Sci-Net and Sci-Hub"
 readme = "README.md"
 license = { file = "LICENSE" }

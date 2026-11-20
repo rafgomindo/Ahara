@@ -41,7 +41,7 @@ from habanero import Crossref
 from mcp.server.mcpserver import MCPServer
 from PIL import Image
 
-__version__ = "2.1.0"
+__version__ = "2.1.1"
 
 # --- Logging -----------------------------------------------------------
 # MCP stdio transport uses stdout for the JSON-RPC stream, so all
@@ -58,7 +58,12 @@ for _noisy in ("httpx", "httpx2"):
 
 # --- Configuration -------------------------------------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# pip installs put server.py in site-packages, which is no place for settings or papers.
+INSTALLED = "site-packages" in BASE_DIR.replace("\\", "/").split("/")
+# Settings: .env next to server.py (repo checkout), then ~/.ahara/.env (any install).
+# Neither overrides variables that are already set.
 load_dotenv(os.path.join(BASE_DIR, ".env"))
+load_dotenv(os.path.join(os.path.expanduser("~"), ".ahara", ".env"))
 
 
 def _env_int(name: str, default: int) -> int:
@@ -97,7 +102,10 @@ RELAY_HOST = os.getenv("AHARA_RELAY_HOST", "127.0.0.1")
 RELAY_PORT = _env_int("AHARA_RELAY_PORT", 0)
 STATE_DIR = os.path.expanduser(os.getenv("AHARA_STATE_DIR", "~/.ahara"))
 DOWNLOADS_DIR = os.path.expanduser(os.getenv("AHARA_DOWNLOADS_DIR", "~/Downloads"))
-DEFAULT_OUTPUT_DIR = os.path.join(BASE_DIR, "sci-hub-downloads")
+DEFAULT_OUTPUT_DIR = os.path.expanduser(
+    os.getenv("AHARA_OUTPUT_DIR")
+    or ("~/sci-hub-downloads" if INSTALLED else os.path.join(BASE_DIR, "sci-hub-downloads"))
+)
 IMPORT_WINDOW_MINUTES = 15
 
 # Long-lived Sci-Hub entry domains (Wikidata Q21980377, "official website"). The
