@@ -76,6 +76,10 @@ The quickest way is to install it with pip, which gives you an `ahara-mcp` comma
 pip install git+https://github.com/rafgomindo/Ahara.git
 ```
 
+You can also download the `.whl` file from the [latest release](https://github.com/rafgomindo/Ahara/releases/latest) and run `pip install ahara_mcp-<version>-py3-none-any.whl`.
+
+With Docker (Tesseract included), clone the repository and run `docker compose up --build`; Āhara is then served over HTTP at `http://localhost:8000/mcp`.
+
 Or clone the repository and install the Python dependencies:
 
 ```bash
